@@ -1,0 +1,10 @@
+.searchForm input, .searchForm label{
+    display:block;
+    margin-bottom: 10px;
+}
+
+.searchForm {
+    margin-top:30px;
+    margin-bottom:30px;
+
+}
