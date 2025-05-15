@@ -1,4 +1,9 @@
-.contactForm input , .contactForm label{
-  display:block;
-  margin-bottom: 10px;
+.contactForm {
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  max-width: 400px;
+}
+.contactForm button,  .contactForm label{
+  margin-top:20px;
 }

@@ -1,25 +1,30 @@
 import css from './ContactForm.module.css'
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const ContactForm = () => {
-    const handleSubmit = (event)=>{
-        event.preventDefault();
+  const handleSubmit = (values, actions) => {
+    console.log(values)
+    actions.resetForm();
+  };
 
-        const form = event.target;
-        console.log(form.elements.Name.value)
-        console.log(form.elements.Number.value)
+  const initialValues = { name: "", phone: "" };
 
-        form.reset();
-    }
-    
-    return (
-    <form onSubmit={handleSubmit} className={css.contactForm}>
-      <label>Name</label>
-      <input type="text" name="Name" />
-      <label>Phone</label>
-      <input type="number" name="Number" />
-      <button type="submit">Add Contact</button>
-    </form>
+
+  return (
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}
+    >
+      <Form className={css.contactForm}>
+        <label>Name</label>
+        <Field name="name" type="text" />
+
+        <label>Phone</label>
+        <Field name="phone" type="text" />
+
+        <button type="submit">Add Contact</button>
+      </Form>
+    </Formik>
   );
 };
 
-export default ContactForm
+export default ContactForm;

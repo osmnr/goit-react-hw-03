@@ -1,19 +1,13 @@
 import css from './SearchBox.module.css'
-import { useState } from 'react'
 
-const SearchBox = () => {
-    const [nameValue, setNameValue] = useState('');
 
-    const handleSearch = (event) => {
-        setNameValue(event.target.value);
-        console.log(nameValue);
-    }
+const SearchBox = ({keyword, handleSearch}) => {
     
     return (
-        <form onChange={handleSearch} className={css.searchForm}>
+        <div className={css.searchBoxDiv}>
         <p>Find contacts by name</p>
-        <input type="text" value={nameValue} name="Name" onChange={handleSearch}/>
-        </form>
+        <input type="text" value={keyword} name="Name" onChange={handleSearch}/>
+        </div>
       );
 }
 
