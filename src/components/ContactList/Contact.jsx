@@ -1,8 +1,10 @@
-const Contact = ()=>{
-    return <div>
-        <p>Rosie Simpson</p>
-        <p>123-32-41</p>
+const Contact = ({ name, number }) => {
+  return (
+    <div>
+      <p>{name}</p>
+      <p>{number}</p>
     </div>
-}
+  );
+};
 
-export default Contact
+export default Contact;
