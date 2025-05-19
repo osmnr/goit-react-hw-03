@@ -1,8 +1,9 @@
-import "./App.css";
+import style from "./App.module.css";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
 import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 
 function App() {
   // static contacts data instance from the hw
@@ -29,6 +30,17 @@ function App() {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
+  // Adding a new contact to contacts
+  const addContact = ({ name, phone }) => {
+    const newContact = {
+      id: nanoid(),
+      name,
+      number: phone,
+    };
+
+    setContacts((prevContacts) => [newContact, ...prevContacts]);
+  };
+
   // filtering variable initialization
   const [keyword, setKeyword] = useState("");
 
@@ -39,12 +51,12 @@ function App() {
   };
 
   return (
-    <>
+    <div className={style.mainContainer}>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm addContact={addContact} />
       <SearchBox handleSearch={handleSearch} keyword={keyword} />
       <ContactList contacts={contacts} />
-    </>
+    </div>
   );
 }
 

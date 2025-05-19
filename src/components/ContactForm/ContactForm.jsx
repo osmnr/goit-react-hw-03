@@ -2,9 +2,9 @@ import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const ContactForm = () => {
+const ContactForm = ({ addContact }) => {
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    addContact(values);
     actions.resetForm();
   };
 
