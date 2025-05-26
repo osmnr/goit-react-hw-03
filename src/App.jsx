@@ -50,12 +50,21 @@ function App() {
     setKeyword(event.target.value);
   };
 
+
+
+  // callback for deleting a contact
+   const deleteContact = (id) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id)
+    );
+  };
+
   return (
     <div className={style.mainContainer}>
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox handleSearch={handleSearch} keyword={keyword} />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} deleteContact={deleteContact} />
     </div>
   );
 }
