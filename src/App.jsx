@@ -37,21 +37,29 @@ function App() {
       name,
       number: phone,
     };
-
+    
     setContacts((prevContacts) => [newContact, ...prevContacts]);
   };
 
   // filtering variable initialization
   const [keyword, setKeyword] = useState("");
 
+
   // callback for filtering
   const handleSearch = (event) => {
-    console.log(event.target.value);
     setKeyword(event.target.value);
   };
 
+   const getFilteredContacts = () => {
+    const normalizedFilter = keyword.toLowerCase();
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
 
-
+  const filteredContacts = getFilteredContacts();
+  
+  
   // callback for deleting a contact
    const deleteContact = (id) => {
     setContacts((prevContacts) =>
@@ -64,7 +72,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox handleSearch={handleSearch} keyword={keyword} />
-      <ContactList contacts={contacts} deleteContact={deleteContact} />
+      <ContactList contacts={filteredContacts} deleteContact={deleteContact} />
     </div>
   );
 }
